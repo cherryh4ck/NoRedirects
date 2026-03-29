@@ -6,9 +6,8 @@ import com.velocitypowered.api.event.player.KickedFromServerEvent
 class KickListener {
     @Subscribe
     fun onServerKick(event: KickedFromServerEvent) {
-        val player = event.player
         val kickReason = event.serverKickReason.orElse(null)
-        if (event.server.serverInfo.name == "main") {
+        if (event.server.serverInfo.name == "main" || event.server.serverInfo.name == "auth") {
             event.result = KickedFromServerEvent.DisconnectPlayer.create(kickReason)
         }
     }
